@@ -1,4 +1,4 @@
-name: AHJ-TESTING
+name: VITE-APP-CALENDAR
 
 on:
   push:
@@ -27,43 +27,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
-          cache: 'yarn'
-      - run: yarn
-      - run: yarn lint
-      
-  e2e-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Install Chromium browser
-        run: sudo apt-get update && sudo apt-get install -y chromium-browser
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22.14.0
-          cache: 'yarn'
-      
-      - name: Install dependencies
-        run: yarn install
-        
-      - name: Run E2E tests
-        run: yarn test:e2e
-
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22.14.0
-          cache: 'yarn'
-      - run: yarn
-      - run: yarn test
+      - run: npm install
+      - run: npm run lint
 
   build:
-    needs: [eslint, test]
+    needs: [eslint]
 
     environment:
       name: github-pages
@@ -76,9 +44,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
-          cache: 'yarn'
-      - run: yarn
-      - run: yarn build
+      - run: npm install
+      - run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact

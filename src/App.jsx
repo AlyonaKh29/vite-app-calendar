@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import { Calendar } from './components/Calendar/Calendar'
 //import './App.css'
 
